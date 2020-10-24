@@ -1,5 +1,5 @@
 steps:
-  - task: SonarCloudPrepare@4.11.0
+  - task: SonarCloudPrepare@1
     displayName: 'Prepare analysis configuration'
     inputs:
       SonarCloud: 'SC'
@@ -15,10 +15,14 @@ steps:
         # You can however override this by setting wanted properties in this extraProperties space.
         # Read more about this : https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/#header-4
 
+  # Add your build task(s) here
+
+  - task: SonarCloudAnalyze@1
+
 
   # Uncomment the next task to wait until SonarCloud processing has
   # finished and to publish the result on the Pipeline build summary
-  - task: SonarCloudPublish@4.11.0
+  - task: SonarCloudPublish@1
     displayName: 'Publish results on build summary'
     inputs:
       pollingTimeoutSec: '300'
