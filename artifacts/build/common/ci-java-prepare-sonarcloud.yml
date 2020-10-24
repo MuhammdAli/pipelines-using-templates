@@ -1,6 +1,6 @@
 stages:
   - stage: Analysis
-    displayName: Static Code Analysis
+    displayName: Static Code Analysis Preparation
     jobs:
       - job: Analysis
         steps:
