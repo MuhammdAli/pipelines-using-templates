@@ -3,7 +3,7 @@ steps:
     displayName: 'Prepare analysis configuration'
     inputs:
       SonarCloud: 'SC'
-      organization: 'SystemsLtd'
+      organization: 'SystemsLtdDemo'
       scannerMode: Other
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
