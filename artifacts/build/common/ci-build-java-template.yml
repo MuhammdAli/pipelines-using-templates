@@ -13,9 +13,9 @@ stages:
               publishJUnitResults: true
               codeCoverageToolOption: JaCoCo
               mavenAuthenticateFeed: false
-              effectivePomSkip: false
-              sonarQubeRunAnalysis: true
-              sqMavenPluginVersionChoice: 'latest'
+#              effectivePomSkip: false
+#              sonarQubeRunAnalysis: true
+#              sqMavenPluginVersionChoice: 'latest'
 
           - template: ./ci-coverage-check-task-template.yml
           - template: ./ci-java-analysis-sonarcloud.yml
