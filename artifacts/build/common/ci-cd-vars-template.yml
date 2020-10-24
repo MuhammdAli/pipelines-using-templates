@@ -24,3 +24,8 @@ variables:
     value: ${{ parameters.sourceDirectory }}
   - name: codeCoverageThreshold
     value: 70
+  - name: sonarCloudEndpointName
+    value: "SC"
+  - name: sonarCloudOrganization
+    value: "SystemsLtdDemo"
+

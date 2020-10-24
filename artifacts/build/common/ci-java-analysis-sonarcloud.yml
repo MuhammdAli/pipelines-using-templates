@@ -2,8 +2,8 @@ steps:
   - task: SonarCloudPrepare@1
     displayName: 'Prepare analysis configuration'
     inputs:
-      SonarCloud: 'SC'
-      organization: 'SystemsLtdDemo'
+      SonarCloud: '$(sonarCloudEndpointName)'
+      organization: '$(sonarCloudOrganization)'
       scannerMode: Other
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
