@@ -28,4 +28,8 @@ variables:
     value: "SC"
   - name: sonarCloudOrganization
     value: "SystemsLtdDemo"
+  - name: sonarCloudProjectKey
+    value: "SystemsLtdDemo_SystemsCIDemo"
+  - name: sonarCloudProjectName
+    value: "SystemsCIDemo"
 
