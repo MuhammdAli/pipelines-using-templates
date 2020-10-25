@@ -4,7 +4,36 @@ stages:
     jobs:
       - job: Build
         steps:
-          - template: ./ci-java-prepare-sonarcloud.yml
-          - template: ./ci-maven-task-template.yml
+          - task: SonarCloudPrepare@1
+              displayName: 'Prepare analysis configuration'
+              inputs:
+                SonarCloud: '$(sonarCloudEndpointName)'
+                organization: '$(sonarCloudOrganization)'
+                scannerMode: Other
+                # Additional properties that will be passed to the scanner,
+                # Put one key=value per line, example:
+                # sonar.exclusions=**/*.bin
+                sonar.projectKey: '$(sonarCloudProjectKey)'
+                sonar.projectName: '$(sonarCloudProjectName)'
+                extraProperties: |
+                  sonar.coverage.jacoco.xmlReportPaths=CCReport43F6D5EF/jacoco.xml
+                  # Initial behavior of Maven task is that the SonarScanner uses information contained in Maven
+                  # object model to provide smart defaults for most of the standard analysis parameters.
+                  # You can however override this by setting wanted properties in this extraProperties space.
+                  # Read more about this : https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/#header-4
+
+          - task: Maven@3
+            displayName: Maven Build and Test
+            inputs:
+              mavenPomFile: "$(System.DefaultWorkingDirectory)/$(sourceDirectory)/pom.xml"
+              goals: "package"
+              testResultsFiles: "**/surefire-reports/TEST-*.xml"
+              publishJUnitResults: true
+              codeCoverageToolOption: JaCoCo
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: true
+              sqMavenPluginVersionChoice: 'latest'
+
           - template: ./ci-coverage-check-task-template.yml
           - template: ./ci-java-analysis-sonarcloud.yml
