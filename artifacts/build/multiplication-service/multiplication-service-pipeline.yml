@@ -15,6 +15,5 @@ variables:
       sourceDirectory: "multiplication-service/"
 
 stages:
-  - template: ../common/ci-java-prepare-sonarcloud.yml
   - template: ../common/ci-build-java-template.yml
   - template: ../common/ci-docker-template.yml

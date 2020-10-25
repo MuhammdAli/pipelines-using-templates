@@ -1,22 +1,10 @@
 stages:
   - stage: Build
     displayName: Build stage
-    dependsOn: Analysis
     jobs:
       - job: Build
         steps:
-          - task: Maven@3
-            displayName: Maven Build and Test
-            inputs:
-              mavenPomFile: "$(System.DefaultWorkingDirectory)/$(sourceDirectory)/pom.xml"
-              goals: "package"
-              testResultsFiles: "**/surefire-reports/TEST-*.xml"
-              publishJUnitResults: true
-              codeCoverageToolOption: JaCoCo
-              mavenAuthenticateFeed: false
-#              effectivePomSkip: false
-#              sonarQubeRunAnalysis: true
-#              sqMavenPluginVersionChoice: 'latest'
-
+          - template: ./ci-java-prepare-sonarcloud.yml
+          - template: ./ci-maven-task-template.yml
           - template: ./ci-coverage-check-task-template.yml
           - template: ./ci-java-analysis-sonarcloud.yml
