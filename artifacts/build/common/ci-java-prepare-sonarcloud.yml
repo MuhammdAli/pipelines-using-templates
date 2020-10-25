@@ -1,6 +1,6 @@
 steps:
   - task: SonarCloudPrepare@1
-      displayName: Prepare analysis configuration
+#      displayName: Prepare analysis configuration
       inputs:
         SonarCloud: '$(sonarCloudEndpointName)'
         organization: '$(sonarCloudOrganization)'
