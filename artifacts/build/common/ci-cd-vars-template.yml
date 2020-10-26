@@ -27,7 +27,7 @@ variables:
   - name: sonarCloudEndpointName
     value: "SC"
   - name: sonarCloudOrganization
-    value: "SystemsLtdDemo"
+    value: "systemsltddemo"
   - name: sonarCloudProjectKey
     value: "SystemsLtdDemo_SystemsCIDemo"
   - name: sonarCloudProjectName
